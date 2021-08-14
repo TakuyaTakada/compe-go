@@ -8,11 +8,18 @@ import (
 	"strconv"
 )
 
+func run(n int) int {
+	var ans int
+	return ans
+}
+
 func main() {
 	io := NewIO()
 	defer io.Output()
 
-	// do something
+	n := io.Int()
+
+	io.Write(run(n))
 }
 
 type IO struct {
