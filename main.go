@@ -44,7 +44,7 @@ func (io *IO) Read() string {
 
 func (io *IO) Write(val ...interface{}) {
 	for _, v := range val {
-		if _, err := fmt.Fprintf(io.out, "%v", v); err != nil {
+		if _, err := fmt.Fprintln(io.out, v); err != nil {
 			panic(err)
 		}
 	}
@@ -57,10 +57,18 @@ func (io *IO) Output() {
 	}
 }
 
-func (io *IO) ReadInt() int {
+func (io *IO) Int() int {
 	i, err := strconv.Atoi(io.Read())
 	if err != nil {
 		panic(err)
 	}
 	return i
+}
+
+func (io *IO) IntN(n int) []int {
+	intN := make([]int, n)
+	for i := 0; i < n; i++ {
+		intN[i] = io.Int()
+	}
+	return intN
 }
